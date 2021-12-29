@@ -9,19 +9,19 @@ export function handleInitialData() {
     return (dispatch) => {
         dispatch(showLoading())
         return getInitialData().then(({users,questions}) => {
-            // dispatch(receiveUsers(users))
-            // dispatch(receivedQuestion(questions))
-            dispatch(hideLoading())
+            dispatch(receiveUsers(users));
+            dispatch(receivedQuestion(questions));
+            dispatch(hideLoading());
         })
     }
 }
 
 export function handleLogin(AUTHED_ID) {
     return (dispatch, getstore) => {
-        dispatch(showLoading())
-        dispatch(setLoginUser(AUTHED_ID))
-        console.log(getstore())
-        dispatch(hideLoading())
+        dispatch(showLoading());
+        dispatch(setLoginUser(AUTHED_ID));
+        console.log(getstore());
+        dispatch(hideLoading());
     }
 
 }
