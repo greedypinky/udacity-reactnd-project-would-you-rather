@@ -10,13 +10,12 @@ export default function questions(state = {}, action) {
         case ADD_QUESTION:
             const { question } = action
             const { author} = question.author
-            const { user } = state.users[author]
             return {
                 ...state,
                 [question.id]: question,
                 [author]: {
-                    ...user,
-                    questions: user.questions.concat([question.id])
+                    ...state.users[author],
+                    questions: state.users[author].questions.concat([question.id])
                 }
             }
         default:

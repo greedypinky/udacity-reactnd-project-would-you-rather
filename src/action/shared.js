@@ -2,8 +2,7 @@ import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import { getInitialData }  from '../utils/api'
 import { receiveUsers} from '../action/users'
 import { receivedQuestion } from '../action/questions'
-import { setLoginUser} from '../action/loginUser'
-
+import { setLoginUser} from '../action/authedUser'
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -24,6 +23,12 @@ export function handleLogin(AUTHED_ID) {
         dispatch(hideLoading());
     }
 
+}
+
+export function handleLogout() {
+    return (dispatch) => {
+        dispatch(setLoginUser(""));
+    }   
 }
 
 

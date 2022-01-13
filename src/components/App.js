@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData, handleLogin } from '../action/shared'
+import { BrowserRouter as Router , Route} from 'react-router-dom'
+import Home  from '../components/Home'
+import LeaderBoard from '../components/Leaderboard'
+import NewQuestion from '../components/Newquestion'
+import AnswerQuestion from '../components/AnswerQuestion'
+import Nav from '../components/Nav'
+import { Nav2 } from '../components/Nav2'
+import { NavLink } from 'react-router-dom'
 
 class App extends Component {
     state = {
-        loginUser: '',
-        toHome: false,
-      }
+        loginUser:''
+    }
 
     componentDidMount() {
         this.props.dispatch(handleInitialData()) 
@@ -18,8 +25,8 @@ class App extends Component {
         const { dispatch } = this.props
         // update the store's state 
         dispatch(handleLogin(loginUser))
-        this.setState(() => ({
-          toHome: loginUser? false : true,
+        this.setState(()=>({
+            loginUser:''
         }))
       }
 
@@ -31,29 +38,39 @@ class App extends Component {
     }
 
     render() {
-        return (
+        const login = (
             <div>
-                 { 
-                 // login if false 
-                 this.state.toHome === false ?
-                 <div>
-                    <h3 className='center'>Welcome to the Signin</h3>
-                    <form className='new-tweet' onSubmit={this.handleSubmit}>
-                        <select name="login" id="login" onSelect={this.handleSelect}>
-                            <option value="sarahedo">Sarah Edo</option>
-                            <option value="stylermcginnis">Tyler McGinnis</option>
-                            <option value="johndoe">John Doe</option>
-                        </select>
-                        <button
-                            className='btn'
-                            type='submit'>
-                            Sign In
-                        </button>
-                    </form>
-                 </div> 
-                : <div> after login route to Home</div>
-                }
+            <h3 className='center'>Welcome to the Signin</h3>
+            <form className='new-tweet' onSubmit={this.handleSubmit}>
+                <select name="login" id="login" onChange={this.handleSelect}>
+                    <option value="sarahedo">Sarah Edo</option>
+                    <option value="tylermcginnis">Tyler McGinnis</option>
+                    <option value="johndoe">John Doe</option>
+                </select>
+                <button
+                    className='btn'
+                    type='submit' >
+                    Sign In
+                </button>
+            </form>
+         </div> 
+        );
+        return (
+            <Router>
+            <div className='Container'>
+                <Nav />
+                    { 
+                        this.props.login === true ?
+                        login
+                        : <div>
+                            <Route path='/' exact component={Home} />
+                            <Route path='/newquestion' exact component={NewQuestion} />
+                            <Route path='/leaderboard' exact component={LeaderBoard} />
+                            <Route path='/question/:id' component={AnswerQuestion} />
+                        </div>
+                    }
             </div>
+            </Router>
         )
     }
 }
@@ -63,22 +80,8 @@ class App extends Component {
 // 2. { authedUser } - this will extract the tweet.
 function mapStateToProps({authedUser}) {
     return {
-        // show login page if
-        // login: authedUser === null
+        login: authedUser === null
     }
 }
 
-export default connect()(App)
-
-      //    <Router> 
-        //            <Nav/>
-        //            {this.props.login} === false
-        //            ? <div>
-                        //   <p>Require to login</p>  
-                        // </div>
-        //            :<div>
-        //             <Route path='/' exact component={Home} />
-        //             <Route path='/newquestion' exact component={NewQuestion} />
-        //             <Route path='/leaderboard' exact component={LeaderBoard} />
-        //             </div> 
-        //    </Router>
+export default connect(mapStateToProps)(App)

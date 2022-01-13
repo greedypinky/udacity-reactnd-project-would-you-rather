@@ -6,8 +6,8 @@ import App from './components/App'
 import { createStore , applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { combineReducers }from 'redux'
-import loginUser  from './reducers/loginUser'
-import users from './reducers//users'
+import authedUser from './reducers/authedUser'
+import users from './reducers/users'
 import questions from './reducers/questions'
 import answers from './reducers/answers'
 import loadingBarReducer from 'react-redux-loading'
@@ -15,7 +15,7 @@ import thunkMiddleware from 'redux-thunk'
 //import logger from './middleware/logger'
 
 const store = createStore(combineReducers({
-  loginUser,
+  authedUser,
   users,
   questions,
   answers,
