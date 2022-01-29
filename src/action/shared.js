@@ -27,7 +27,7 @@ export function handleLogin(AUTHED_ID) {
 
 export function handleLogout() {
     return (dispatch) => {
-        dispatch(setLoginUser(""));
+        dispatch(setLoginUser(null));
     }   
 }
 

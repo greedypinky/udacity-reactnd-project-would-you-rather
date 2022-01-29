@@ -1,28 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAnswerQuestion } from '../action/answers'
+import { handleAnswerQuestion } from '../action/users'
+import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class AnswerQuestion extends Component {
-
-    state = {
-        option : ''
-    }
 
     handleSubmit = (e, qid) => {
         // dispatch(handleAddAnswer)   
         const selectedOption = document.querySelector('input[name = option]:checked').value; 
         const { dispatch } = this.props
-        const { option } = this.state
         dispatch(handleAnswerQuestion(qid, selectedOption))
-    }
-
-    selectOption(){
-        const selectedOption = document.querySelector('input[name = option]:checked').value;
-        this.setState(
-            {
-                option:selectedOption
-            }
-        )
+        // todo: Navigate to Results.js
+        //return <Redirect to='/result'/>
+        this.props.history.push(`/result/${qid}`)
     }
 
     render() {
@@ -69,4 +60,4 @@ function mapStateToProps({authedUser, users, questions}, props) {
     }
 }
 
-export default connect(mapStateToProps)(AnswerQuestion)
+export default withRouter(connect(mapStateToProps)(AnswerQuestion))

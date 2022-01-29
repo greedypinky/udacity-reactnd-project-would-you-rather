@@ -1,4 +1,3 @@
-import { array } from 'prop-types'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from '../components/Question'
@@ -47,8 +46,8 @@ class Home extends Component {
         return (
             <div>
                 <div class="tab" className='center'>
-                <button class="tablinks" type = 'button' onClick={(e) => this.handleOnTab(e,1)}>Unanswered Questions</button>
-                <button class="tablinks" type = 'button' onClick={(e) => this.handleOnTab(e,2)}>Answered Questions</button>
+                <button type = 'button' onClick={(e) => this.handleOnTab(e,1)}>Unanswered Questions</button>
+                <button type = 'button' onClick={(e) => this.handleOnTab(e,2)}>Answered Questions</button>
                 </div>
                 {this.state.loadUnanswered === true ? unansweredUI : answeredUI} 
             </div>
@@ -56,7 +55,7 @@ class Home extends Component {
     }
 }
 
-function mapStateToProps({authedUser, users, questions}) {
+function mapStateToProps({authedUser, users, questions }) {
     console.log("mapStateToProps:" + authedUser)
     const user = users[authedUser]
     const answeredQuestions = user.answers

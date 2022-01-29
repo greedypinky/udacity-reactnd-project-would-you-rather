@@ -1,14 +1,71 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleAddQuestion } from '../action/questions'
 
 class NewQuestion extends Component {
+
+   state = {
+       option1:'',
+       option2:''
+   }
+
+   handleChangeOption1 = (e) => {
+    const text = e.target.value
+    this.setState(() => ({
+      option1:text
+    }))
+  }
+
+  handleChangeOption2 = (e) => {
+    const text = e.target.value
+    this.setState(() => ({
+      option2:text
+    }))
+  }
+       
+   handleSubmit = (e, author) => {
+        e.preventDefault()
+        const { dispatch } = this.props
+        const { option1, option2 } = this.state
+        dispatch(handleAddQuestion(option1, option2))
+        this.setState(()=> ({
+                option1:'',
+                option2:''
+        }))
+        this.props.history.push(`/`)
+    }
+
     render() {
+        const { authedUser } = this.props
+        const {option1, option2} = this.state
         return (
-            <div>
-                <p>This is Newquestion!</p>
-            </div>
+        <div>
+         <div className = 'Container'>
+               <h2 className='center'>Create New Question</h2>
+               <form className='question-info' onSubmit={this.handleSubmit}>
+                 <div>
+                 <h4>Complete the question</h4>
+                 <br></br>
+                    <span>Would you rather</span>
+                     <textarea id="option1" placeholder="Enter optionOne text here" className='textarea' maxLength={280} value={option1} onChange={this.handleChangeOption1}></textarea>
+                        <span> OR </span>
+                     <textarea id="option2" placeholder="Enter optionTwo text here" className='textarea' maxLength={280} value={option2} onChange={this.handleChangeOption2}></textarea>
+                    <button className='btn' type='submit' disabled={option1 === '' || option2 === ''} onClick={(e) => {this.handleSubmit(e,authedUser)}}>
+                        Submit
+                    </button>
+                    </div>
+                </form>
+           </div>
+         </div>
         )
     }
 }
 
-export default NewQuestion
+function mapStateToProps({authedUser}) {
+    console.log("mapStateToProps:" + authedUser)
+    return {
+        authedUser:authedUser
+    }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

@@ -11,6 +11,8 @@ class Question extends Component {
        // check how to navigate if answered and not answered
        if (!isAnswered) {
         this.props.history.push(`/question/${question.id}`)
+       } else {
+        this.props.history.push(`/result/${question.id}`)
        }
    }
 
@@ -23,7 +25,7 @@ class Question extends Component {
            <div className = 'question'>
                <h3 className='center'>{`${author.name} ask:`}</h3>
                <br></br>
-               <img className='Avatar' src={author.avatarURL} alt = {`Avatar of ${author.name}`} width="50" height="50" />
+               <img className='avatar' src={author.avatarURL} alt = {`Avatar of ${author.name}`} width="50" height="50" />
                 <div className='question-info'>
                     <span>Would you rather</span>
                      <p>{ question["optionOne"].text}</p> 
@@ -34,7 +36,7 @@ class Question extends Component {
                         </button>
                 </div>
            </div>
-           </div>
+        </div>
        )
    }
 }

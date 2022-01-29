@@ -9,7 +9,6 @@ import { combineReducers }from 'redux'
 import authedUser from './reducers/authedUser'
 import users from './reducers/users'
 import questions from './reducers/questions'
-import answers from './reducers/answers'
 import loadingBarReducer from 'react-redux-loading'
 import thunkMiddleware from 'redux-thunk'
 //import logger from './middleware/logger'
@@ -18,7 +17,6 @@ const store = createStore(combineReducers({
   authedUser,
   users,
   questions,
-  answers,
   loadingBar: loadingBarReducer,
 }), applyMiddleware(thunkMiddleware, logger))
 
@@ -28,5 +26,3 @@ ReactDOM.render(
   </Provider>,
 document.getElementById('root')
 )
-
-//ReactDOM.render(<App />, document.getElementById('root'))

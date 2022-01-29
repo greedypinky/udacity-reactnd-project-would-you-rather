@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import { handleInitialData, handleLogin } from '../action/shared'
 import { BrowserRouter as Router , Route} from 'react-router-dom'
 import Home  from '../components/Home'
-import LeaderBoard from '../components/Leaderboard'
+import Leaderboard from '../components/Leaderboard'
 import NewQuestion from '../components/Newquestion'
 import AnswerQuestion from '../components/AnswerQuestion'
 import Nav from '../components/Nav'
-import { Nav2 } from '../components/Nav2'
-import { NavLink } from 'react-router-dom'
+import PollResult from '../components/PollResult'
 
 class App extends Component {
     state = {
@@ -25,9 +24,7 @@ class App extends Component {
         const { dispatch } = this.props
         // update the store's state 
         dispatch(handleLogin(loginUser))
-        this.setState(()=>({
-            loginUser:''
-        }))
+        
       }
 
     handleSelect = (e) => {
@@ -59,14 +56,14 @@ class App extends Component {
             <Router>
             <div className='Container'>
                 <Nav />
-                    { 
-                        this.props.login === true ?
+                    {this.props.login === true ?
                         login
                         : <div>
                             <Route path='/' exact component={Home} />
-                            <Route path='/newquestion' exact component={NewQuestion} />
-                            <Route path='/leaderboard' exact component={LeaderBoard} />
-                            <Route path='/question/:id' component={AnswerQuestion} />
+                            <Route path='/add' exact component={NewQuestion} />
+                            <Route path='/leaderboard' exact component={Leaderboard} />
+                            <Route path='/question/:id' exact component={AnswerQuestion} />
+                            <Route path='/result/:id' exact component={PollResult} />
                         </div>
                     }
             </div>
@@ -77,7 +74,7 @@ class App extends Component {
 
 
 // 1. the caller will pass in the state by const state = getState();
-// 2. { authedUser } - this will extract the tweet.
+// 2. { authedUser } - extract from state
 function mapStateToProps({authedUser}) {
     return {
         login: authedUser === null

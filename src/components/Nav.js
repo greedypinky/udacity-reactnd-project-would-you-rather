@@ -6,8 +6,9 @@ import { handleLogout } from '../action/shared';
 
 class Nav extends Component {
     handleLogout = (e) => {
+        e.preventDefault()
         const { dispatch } = this.props
-        dispatch(handleLogout)
+        dispatch(handleLogout())
     }
     render() {
         const { user } = this.props
@@ -20,7 +21,7 @@ class Nav extends Component {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/newquestion" exact activeClassName='active'>
+                        <NavLink to="/add" exact activeClassName='active'>
                             New Question
                         </NavLink>
                     </li>
@@ -29,14 +30,26 @@ class Nav extends Component {
                             Leader Board
                         </NavLink>
                     </li>
-                    <li></li>
+                    <li>
+                        <NavLink to="/result" exact activeClassName='active'>
+                            Results
+                        </NavLink>
+                    </li>
                     {user && (
                         <div>
                             <li>
                                 <span>{`Hello, ${user.name}`}
                                 <img className='Avatar' src={user.avatarURL} alt = {`Avatar of ${user.name}`} width="20" height="20" />
                                 </span>
-                                <span>Logout</span>
+                               
+                            </li>
+                            <li>
+                            <form className='new-tweet' onSubmit={this.handleLogout}>
+                                    <button
+                                        type='submit' >
+                                        Logout
+                                    </button>
+                            </form>
                             </li>
                         </div>
                     )} 

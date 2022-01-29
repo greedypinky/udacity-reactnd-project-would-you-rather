@@ -1,5 +1,6 @@
 import { RECEIVE_QUESTIONS , ADD_QUESTION } from '../action/questions'
 
+
 export default function questions(state = {}, action) {
     switch (action.type) {
         case RECEIVE_QUESTIONS:
@@ -9,14 +10,25 @@ export default function questions(state = {}, action) {
             }
         case ADD_QUESTION:
             const { question } = action
-            const { author} = question.author
             return {
                 ...state,
-                [question.id]: question,
-                [author]: {
-                    ...state.users[author],
-                    questions: state.users[author].questions.concat([question.id])
+                [question.id]: question
+            }
+        case "UPDATE_QUESTION_VOTE":
+            // question is formatted answer
+            // answer is "option1" or option2
+            // { authedUser, qid, answer }
+            const { authedUser, qid, answer } = action.question
+            return {
+                ...state,
+                [qid]: {
+                    ...state[qid],
+                    [answer]:{
+                        ...state[qid][answer],
+                        votes:state[qid][answer].votes.concat([authedUser])
+                    }
                 }
+                
             }
         default:
             return state
