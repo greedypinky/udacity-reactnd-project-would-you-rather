@@ -23,9 +23,9 @@ class Question extends Component {
        return (
         <div>
            <div className = 'question'>
+           <   img className='avatar' src={author.avatarURL} alt = {`Avatar of ${author.name}`} width="50" height="50" />
                <h3 className='center'>{`${author.name} ask:`}</h3>
                <br></br>
-               <img className='avatar' src={author.avatarURL} alt = {`Avatar of ${author.name}`} width="50" height="50" />
                 <div className='question-info'>
                     <span>Would you rather</span>
                      <p>{ question["optionOne"].text}</p> 
@@ -42,7 +42,6 @@ class Question extends Component {
 }
 
 function mapStateToProps({authedUser, users, questions}, {id}) {
-    console.log("mapStateToProps:" + authedUser)
     const question = questions[id]
     const author = users[question.author]
     const user = users[authedUser]

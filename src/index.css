@@ -5,6 +5,21 @@ body {
   color: #252525;
 }
 
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between 
+}
+
+/* Style the submit button */
+.form-inline button {
+  padding: 10px 20px;
+  background-color: rgb(235, 240, 245);
+  border: 1px solid #ddd;
+  color: rgb(14, 12, 12);
+}
+
 .circle {
   border-radius: 70%;
   width: 40px;

@@ -49,7 +49,6 @@ class PollResult extends Component {
 
 function mapStateToProps({authedUser, users, questions}, props) {
     const params = props.match.params
-    // const question = questions[params.id]
     const question = !questions[params.id] ? questions.slice(-1) : questions[params.id]
     const author = users[question.author]
     const user = users[authedUser]

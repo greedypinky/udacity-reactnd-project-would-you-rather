@@ -9,46 +9,44 @@ export const UPDATE_AUTHOR_QUESTION = 'UPDATE_AUTHOR_QUESTION'
 // question = { optionOneText, optionTwoText, author }
 export function addQuestion(question) {
     return {
-        type:ADD_QUESTION,
+        type: ADD_QUESTION,
         question
     }
 }
 
 export function updateAuthorQuestion(question) {
-    const author = question.author
-    const id = question.id
     return {
-        type:UPDATE_AUTHOR_QUESTION,
-        question:{
-            id:question.id,
-            author:question.author
+        type: UPDATE_AUTHOR_QUESTION,
+        question: {
+            id: question.id,
+            author: question.author
         }
     }
 }
 
 export function receivedQuestion(questions) {
     return {
-        type:RECEIVE_QUESTIONS,
+        type: RECEIVE_QUESTIONS,
         questions
     }
 }
 
 export function updateQuestionVote(question) {
     return {
-        type:UPDATE_QUESTION_VOTE,
+        type: UPDATE_QUESTION_VOTE,
         question,
     }
 }
 
-export function handleAddQuestion (optionOneText, optionTwoText) {
+export function handleAddQuestion(optionOneText, optionTwoText) {
     return (dispatch, getState) => {
-        const {authedUser} = getState()
+        const { authedUser } = getState()
         const author = authedUser
         dispatch(showLoading())
-        return saveQuestion({optionOneText, optionTwoText, author})
-        .then((formattedQuestion) => dispatch(addQuestion(formattedQuestion)))
-        .then((action) => dispatch(updateAuthorQuestion(action.question)))
-        .then(()=> dispatch(hideLoading()))
+        return saveQuestion({ optionOneText, optionTwoText, author })
+            .then((formattedQuestion) => dispatch(addQuestion(formattedQuestion)))
+            .then((action) => dispatch(updateAuthorQuestion(action.question)))
+            .then(() => dispatch(hideLoading()))
     }
 
 }

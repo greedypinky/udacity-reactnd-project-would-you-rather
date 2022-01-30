@@ -23,13 +23,13 @@ class AnswerQuestion extends Component {
         return (
          <div>
             <div className = 'question'>
+                <img className='Avatar' src={author.avatarURL} alt = {`Avatar of ${author.name}`} width="50" height="50" /> 
                 <h3>{`${author.name} ask:`}</h3>
                 <br></br>
-                <img className='Avatar' src={author.avatarURL} alt = {`Avatar of ${author.name}`} width="50" height="50" />
                  <div className='question-info'>
                      <span>Would you rather</span>
                      <div>
-                        <input type='radio' name='option' value ='optionOne'/>
+                        <input type='radio' name='option' value ='optionOne' checked="checked"/>
                         <label>{option1}</label>
                     </div>
                     <div>

@@ -12,7 +12,7 @@ class Nav extends Component {
     }
     render() {
         const { user } = this.props
-        return(
+        return (
             <nav className='nav'>
                 <ul>
                     <li>
@@ -30,36 +30,24 @@ class Nav extends Component {
                             Leader Board
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/result" exact activeClassName='active'>
-                            Results
-                        </NavLink>
-                    </li>
                     {user && (
-                        <div>
-                            <li>
-                                <span>{`Hello, ${user.name}`}
-                                <img className='Avatar' src={user.avatarURL} alt = {`Avatar of ${user.name}`} width="20" height="20" />
-                                </span>
-                               
-                            </li>
-                            <li>
-                            <form className='new-tweet' onSubmit={this.handleLogout}>
-                                    <button
-                                        type='submit' >
-                                        Logout
+                        <div className='form-inline'>
+                            <span>{`Hello, ${user.name}`} <img className='Avatar' src={user.avatarURL} alt={`Avatar of ${user.name}`} width="20" height="20" /></span>
+                            <form className='form-inline' onSubmit={this.handleLogout}>
+                                <button
+                                    type='submit' >
+                                    Logout
                                     </button>
                             </form>
-                            </li>
                         </div>
-                    )} 
+                    )}
                 </ul>
             </nav>
         )
     }
 }
 
-function mapStateToProps({authedUser, users}) {
+function mapStateToProps({ authedUser, users }) {
     return {
         user: users[authedUser]
     }
