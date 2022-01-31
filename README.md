@@ -7,10 +7,10 @@ This application have the following pages:
 - from the unanswered question list, user can navigate to answer the poll that is created by other users or by the login user.
 - from the answered question list, user can navigate to view the poll results in percentage for 2 options respectively.
 
-### Create Poll
+### New Question
 - create poll to ask the "would you rather" questions with 2 options.
 
-### Leaderboard
+### Leader board
 - view the leaderboard which shows the score of the answered and created questions, as well as the total score.
 
 ### Other functionalities of this application
