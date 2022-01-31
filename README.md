@@ -5,7 +5,7 @@ This application have the following pages:
 ### Home
 - the dashboard which shows the answered and unanswered list respectively.
 - from the unanswered question list, user can navigate to answer the poll that is created by other users or by the login user.
-- from the answered question list, user can navigate to view the poll percentage for 2 options respectively.
+- from the answered question list, user can navigate to view the poll results in percentage for 2 options respectively.
 
 ### Create Poll
 - create poll to ask the "would you rather" questions with 2 options.
