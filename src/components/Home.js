@@ -44,7 +44,7 @@ class Home extends Component {
 
         return (
             <div>
-                <div class="tab" className='center'>
+                <div className='center'>
                     <button type='button' onClick={(e) => this.handleOnTab(e, 1)}>Unanswered Questions</button>
                     <button type='button' onClick={(e) => this.handleOnTab(e, 2)}>Answered Questions</button>
                 </div>
@@ -56,14 +56,15 @@ class Home extends Component {
 
 function mapStateToProps({ authedUser, users, questions }) {
     const user = users[authedUser]
+
+    const questionsIds = Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp)
     const answeredQuestions = user.answers
     const answeredIds = Object.keys(answeredQuestions)
-        .sort((a, b) => answeredQuestions[b].timestamp - answeredQuestions[a].timestamp)
-    const questionsIds = Object.keys(questions)
-    const unansweredIds = questionsIds.filter((q) => !answeredIds.includes(q))
+    const sortedAnsweredId = questionsIds.filter((q) => answeredIds.includes(q))
+    const unansweredIds = questionsIds.filter((q) => !sortedAnsweredId.includes(q))
     return {
         loginUser: user,
-        answeredIds: answeredIds,
+        answeredIds: sortedAnsweredId,
         unansweredIds: unansweredIds,
     }
 }

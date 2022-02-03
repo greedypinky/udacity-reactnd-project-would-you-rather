@@ -4,24 +4,35 @@ import Score from '../components/Score'
 
 class Leaderboard extends Component {
     render() {
-        const { userobject } = this.props.users
         return (
-        <div>
-         <ui className='dashboard-list'>
-             {Object.keys(this.props.users).map((username) => (
-                     <li key={this.props.users[username].id}>
-                        <Score user={this.props.users[username]}/>
-                     </li>
-                 ))}
-         </ui>
-         </div>
+            <div>
+                <ui className='dashboard-list'>
+                    {Object.values(this.props.score).map((username) => (
+                        <li key={username}>
+                            <Score user={this.props.users[username]} />
+                        </li>
+                    ))}
+                </ui>
+            </div>
         )
     }
 }
 
-function mapStateToProps({users}) {
+function mapStateToProps({ users }) {
+    // construct new object with score
+    // userId:score
+    let score = {}
+    Object.keys(users).forEach(userId => {
+        const answeredNum = Object.keys(users[userId].answers).length
+        const questionsNum = users[userId].questions.length
+        score[userId] = answeredNum + questionsNum
+    })
+    // sort the score
+    const sortedScore = Object.keys(score).sort((a, b) => score[b] - score[a])
+
     return {
-        users:users
+        users: users,
+        score: sortedScore,
     }
 }
 

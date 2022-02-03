@@ -8,7 +8,7 @@ class AnswerQuestion extends Component {
 
     handleSubmit = (e, qid) => {
         // dispatch(handleAddAnswer)   
-        const selectedOption = document.querySelector('input[name = option]:checked').value; 
+        const selectedOption = document.querySelector('input[name = option]:checked').value;
         const { dispatch } = this.props
         dispatch(handleAnswerQuestion(qid, selectedOption))
         // todo: Navigate to Results.js
@@ -17,46 +17,45 @@ class AnswerQuestion extends Component {
     }
 
     render() {
-        const { authedUser, author, question } = this.props
+        const { author, question } = this.props
         const option1 = question["optionOne"].text
         const option2 = question["optionTwo"].text
         return (
-         <div>
-            <div className = 'question'>
-                <img className='Avatar' src={author.avatarURL} alt = {`Avatar of ${author.name}`} width="50" height="50" /> 
-                <h3>{`${author.name} ask:`}</h3>
-                <br></br>
-                 <div className='question-info'>
-                     <span>Would you rather</span>
-                     <div>
-                        <input type='radio' name='option' value ='optionOne' checked="checked"/>
-                        <label>{option1}</label>
+            <div>
+                <div className='question'>
+                    <img className='Avatar' src={author.avatarURL} alt={`Avatar of ${author.name}`} width="50" height="50" />
+                    <h3>{`${author.name} ask:`}</h3>
+                    <br></br>
+                    <div className='question-info'>
+                        <span>Would you rather</span>
+                        <div>
+                            <input type='radio' name='option' value='optionOne' defaultChecked="checked" />
+                            <label>{option1}</label>
+                        </div>
+                        <div>
+                            <input type='radio' name='option' value='optionTwo' />
+                            <label>{option2}</label>
+                        </div>
+                        <button className='btn' type='submit' onClick={(e) => { this.handleSubmit(e, question.id) }}>
+                            Submit
+                     </button>
                     </div>
-                    <div>
-                        <input type='radio' name='option' value ='optionTwo'/>
-                        <label>{option2}</label>
-                    </div>
-                     <button className='btn' type='submit' onClick={(e) => {this.handleSubmit(e, question.id)}}>
-                           Submit
-                     </button>    
-                 </div>
-            </div>
+                </div>
             </div>
         )
     }
 
 }
 
-function mapStateToProps({authedUser, users, questions}, props) {
-    console.log("mapStateToProps:" + authedUser)
+function mapStateToProps({ authedUser, users, questions }, props) {
     const params = props.match.params
     const question = questions[params.id]
     const author = users[question.author]
     const user = users[authedUser]
     return {
-        authedUser:user,
+        authedUser: user,
         question: question,
-        author : author,
+        author: author,
     }
 }
 
