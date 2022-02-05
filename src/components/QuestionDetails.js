@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from 'react-redux'
-import { Redirect } from "react-router";
+import { Link } from 'react-router-dom';
 import PollResult from "../components/PollResult"
 import AnswerQuestion from "../components/AnswerQuestion"
 
@@ -11,8 +11,11 @@ class QuestionDetails extends Component {
         // convert to boolean true if non-empty string
         const answered = !!user.answers[question_id]
         if (!question)
-            //Render 404 or Redirect to 404
-            return (<Redirect to='*' />)
+            // Render 404 or Redirect to 404
+            return (<div className='center'>
+                <h1>Invalid Page:404 - Not Found!</h1>
+                <Link to="/">Go back to Home</Link>
+            </div>)
         else if (answered)
             return (<PollResult id={question_id} />)
         else
