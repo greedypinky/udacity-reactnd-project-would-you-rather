@@ -20,4 +20,4 @@ This application have the following pages:
 ## How to install the application
 - install all project dependencies with *npm install*
 - start the development server with *npm start*
-- the app will be started at *localhost:3001*
+- the app will be started at *localhost:3000* (by default with port 3000)

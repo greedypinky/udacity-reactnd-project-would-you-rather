@@ -6,13 +6,13 @@ class Leaderboard extends Component {
     render() {
         return (
             <div>
-                <ui className='dashboard-list'>
+                <ul className='dashboard-list'>
                     {Object.values(this.props.score).map((username) => (
                         <li key={username}>
                             <Score user={this.props.users[username]} />
                         </li>
                     ))}
-                </ui>
+                </ul>
             </div>
         )
     }

@@ -56,9 +56,9 @@ class PollResult extends Component {
     }
 }
 
-function mapStateToProps({ authedUser, users, questions }, props) {
-    const params = props.match.params
-    const question = !questions[params.id] ? questions.slice(-1) : questions[params.id]
+function mapStateToProps({ authedUser, users, questions }, { id }) {
+    //const params = props.match.params
+    const question = !questions[id] ? questions.slice(-1) : questions[id]
     const author = users[question.author]
     const user = users[authedUser]
     return {

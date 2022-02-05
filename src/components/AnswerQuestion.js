@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../action/users'
-import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
 class AnswerQuestion extends Component {
@@ -11,9 +10,7 @@ class AnswerQuestion extends Component {
         const selectedOption = document.querySelector('input[name = option]:checked').value;
         const { dispatch } = this.props
         dispatch(handleAnswerQuestion(qid, selectedOption))
-        // todo: Navigate to Results.js
-        //return <Redirect to='/result'/>
-        this.props.history.push(`/result/${qid}`)
+        this.props.history.push(`/questions/${qid}`)
     }
 
     render() {

@@ -9,11 +9,12 @@ class Question extends Component {
         e.preventDefault()
         const { question } = this.props
         // check how to navigate if answered and not answered
-        if (!isAnswered) {
-            this.props.history.push(`/questions/${question.id}`)
-        } else {
-            this.props.history.push(`/result/${question.id}`)
-        }
+        // if (!isAnswered) {
+        //     this.props.history.push(`/questions/${question.id}`)
+        // } else {
+        //     this.props.history.push(`/result/${question.id}`)
+        // }
+        this.props.history.push(`/questions/${question.id}`)
     }
 
     render() {

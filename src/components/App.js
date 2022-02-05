@@ -5,9 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from '../components/Home'
 import Leaderboard from '../components/Leaderboard'
 import NewQuestion from '../components/Newquestion'
-import AnswerQuestion from '../components/AnswerQuestion'
+import QuestionDetails from '../components/QuestionDetails'
 import Nav from '../components/Nav'
-import PollResult from '../components/PollResult'
 import PageNotFound from './PageNotFound'
 import Fragment from 'render-fragment'
 import { LoadingBar } from 'react-redux-loading'
@@ -67,8 +66,7 @@ class App extends Component {
                                     <Route path='/' exact component={Home} />
                                     <Route path='/add' exact component={NewQuestion} />
                                     <Route path='/leaderboard' exact component={Leaderboard} />
-                                    <Route path='/questions/:id' exact component={AnswerQuestion} />
-                                    <Route path='/result/:id' exact component={PollResult} />
+                                    <Route path='/questions/:id' exact component={QuestionDetails} />
                                     <Route path='*' component={PageNotFound} />
                                 </Switch>
                             </div>

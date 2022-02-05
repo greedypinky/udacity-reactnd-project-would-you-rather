@@ -1,5 +1,5 @@
 import { RECEIVE_USERS } from '../action/users'
-import {ANSWER_QUESTION} from '../action/answers'
+import { ANSWER_QUESTION } from '../action/users'
 import { UPDATE_AUTHOR_QUESTION } from '../action/questions'
 
 export default function users(state = {}, action) {
@@ -16,14 +16,14 @@ export default function users(state = {}, action) {
             const answers = state[authedUser].answers
             newAnswer = {
                 ...answers,
-                [qid]:answer
+                [qid]: answer
             }
             return {
                 // todo: add the answered question to the user
                 ...state,
                 [authedUser]: {
                     ...state[authedUser],
-                    answers:newAnswer
+                    answers: newAnswer
                 }
             }
         case UPDATE_AUTHOR_QUESTION:
@@ -31,8 +31,8 @@ export default function users(state = {}, action) {
             return {
                 ...state,
                 [author]: {
-                  ...state[author],
-                  questions:state[author].questions.concat([id])
+                    ...state[author],
+                    questions: state[author].questions.concat([id])
                 }
             }
         default:

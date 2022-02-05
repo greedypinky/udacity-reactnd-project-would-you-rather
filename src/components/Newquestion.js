@@ -58,7 +58,7 @@ class NewQuestion extends Component {
                 </div>
               </div>
               <div>
-                <button className='btn' type='submit' disabled={option1 === '' || option2 === ''} onClick={(e) => { this.handleSubmit(e, authedUser) }}>
+                <button className='btn' type='submit' disabled={option1 === '' || option2 === '' || option1 === option2} onClick={(e) => { this.handleSubmit(e, authedUser) }}>
                   Submit
                       </button>
               </div>
